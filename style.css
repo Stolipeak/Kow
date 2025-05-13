@@ -10,9 +10,9 @@
   color: #ff00ff;
   position: relative;
   text-shadow:
-    0 0 5px #ff00ff,
-    0 0 10px #ff00ff,
-    0 0 20px #ff00ff;
+    0 0 5px #5900ff,
+    0 0 10px #fdfdfd,
+    0 0 20px #000000;
   animation: glitch 1s infinite;
 }
 
