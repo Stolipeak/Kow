@@ -5,6 +5,7 @@
 }
 
 /* Neon glitch uniquement sur "Streetfood" */
+/* Neon glitch uniquement sur "Streetfood" */
 .neon-glitch {
   color: #ff00ff;
   position: relative;
@@ -13,6 +14,28 @@
     0 0 10px #ff00ff,
     0 0 20px #ff00ff;
   animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+    transform: translateX(0);
+  }
+  20% {
+    text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff;
+    transform: translateX(-2px);
+  }
+  40% {
+    text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff;
+    transform: translateX(2px);
+  }
+  60% {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+    transform: translateX(0);
+  }
+  100% {
+    text-shadow: 0 0 5px #ff00ff;
+  }
 }
 
 body {
