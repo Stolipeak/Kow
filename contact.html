@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - KOW</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="bg-anim"></div>
+  <canvas id="particles"></canvas>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">KOW</a>
+      <nav>
+        <ul>
+          <li><a href="index.html#accueil">Accueil</a></li>
+          <li><a href="index.html#menu">Menu</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#blog">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+    <a class="instagram" href="https://instagram.com/kowclub" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </header>
+
+  <main>
+    <section class="contact-container">
+      <div class="contact-image">
+        <img src="images/gerant.jpg" alt="Gérant du restaurant">
+      </div>
+      <div class="contact-form-wrapper">
+        <h1>Contactez-nous</h1>
+        <p class="intro-text">Une question ? Une réservation ? Écrivez-nous !</p>
+        <form class="contact-form">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-column">
+      <h4>Heures d'ouverture :</h4>
+      <p>Du lundi au samedi<br>de 11 h 30 à 23 h<br>(sans interruption)</p>
+    </div>
+    <div class="footer-column">
+      <h4>Appelez-nous :</h4>
+      <p>01 45 32 44 01</p>
+      <a class="footer-insta" href="https://instagram.com/kowclub" target="_blank">
+        <i class="fab fa-instagram"></i> @kowclub
+      </a>
+    </div>
+    <div class="footer-column">
+      <h4>L'adresse :</h4>
+      <p>53 rue Basfroi<br>75011, Paris, France</p>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
