@@ -465,25 +465,11 @@ main {
   font-size: 1.2em;
   font-weight: bold;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.85);
-  padding: 4px 10px;
-  border-radius: 4px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 255, 153, 0.5);
+  padding: 2px 5px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   display: inline-block;
   margin-left: 8px;
   position: relative;
-  z-index: 1;
-}
-
-.item .details .price::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(45deg, #0ff, #f0f);
-  z-index: -1;
-  border-radius: inherit;
-  opacity: 0.2;
 }
 
 @media screen and (max-width: 768px) {
@@ -492,9 +478,6 @@ main {
     margin: 8px 0;
     font-size: 1.3em;
     text-align: left;
-    background-color: rgba(0, 0, 0, 0.9);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    width: fit-content;
   }
 
   .item .details h3 {
@@ -673,5 +656,115 @@ main {
   * {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  border-top: 1px solid rgba(0, 255, 255, 0.3);
+  padding: 30px 15px;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent,
+    #0ff,
+    transparent
+  );
+  animation: footerGlow 3s infinite;
+}
+
+@keyframes footerGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-column {
+  flex: 1 1 200px;
+  min-width: 200px;
+  text-align: center;
+}
+
+.footer-column h4 {
+  color: #0ff;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 5px rgba(0,255,255,0.5);
+}
+
+.footer-column p {
+  color: #ccc;
+  margin: 5px 0;
+  text-shadow: 0 0 2px rgba(0,255,255,0.3);
+}
+
+.footer-insta {
+  display: inline-block;
+  margin-top: 10px;
+  color: #f0f;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-insta:hover {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.deliveroo-badge { 
+  position: fixed; 
+  bottom: 20px; 
+  right: 20px; 
+  width: 60px;
+  height: 60px;
+  background: #00ccbc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  z-index: 1000;
+  transition: transform 0.3s;
+}
+
+.deliveroo-badge:hover {
+  transform: scale(1.1);
+}
+
+.deliveroo-badge img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+@keyframes floatDeliveroo {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }
