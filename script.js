@@ -219,6 +219,41 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 })();
 
+// Ajout d'une optimisation pour désactiver les animations sur mobile
+if (isMobile) {
+  // Désactiver les animations globales
+  document.querySelectorAll('*').forEach(el => {
+    el.style.animation = 'none';
+    el.style.transition = 'none';
+  });
+
+  // Supprimer les particules si elles sont présentes
+  const particlesCanvas = document.getElementById('particles');
+  if (particlesCanvas) {
+    particlesCanvas.remove();
+  }
+
+  // Désactiver le carrousel 3D
+  const carousel = document.querySelector('.carousel-3d');
+  if (carousel) {
+    carousel.style.display = 'none';
+  }
+}
+
+// Désactiver complètement les particules sur mobile
+if (isMobile) {
+  const canvas = document.getElementById("particles");
+  if (canvas) {
+    canvas.remove();
+  }
+}
+
+// Réactiver le carrousel
+const carousel = document.querySelector('.carousel-3d');
+if (carousel) {
+  carousel.style.display = 'block';
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
   // handleImageLoading() désactivé
