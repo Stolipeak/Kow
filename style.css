@@ -54,12 +54,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(20, 0, 40, 0.85);
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 0, 40, 0.95),
+    rgba(20, 0, 40, 0.85)
+  );
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0, 255, 255, 0.3);
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .header-inner { 
@@ -306,10 +311,15 @@ main {
     0 0 20px rgba(0,255,255,0.3),
     0 0 30px rgba(0,255,255,0.1);
   border-bottom: 2px solid rgba(0,255,255,0.3);
-  padding-bottom: 0.3em;
+  padding: 15px 0;
   margin-bottom: 1em;
   position: relative;
   overflow: hidden;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(0,255,255,0.1), rgba(255,0,255,0.1));
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
 }
 
 .section h2::before, .menu-section h2::before {
@@ -366,16 +376,19 @@ main {
   flex-wrap: wrap;
   align-items: center;
   background: rgba(0,0,0,0.85);
-  border: 1px solid rgba(0, 255, 255, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.15);
   border-radius: 10px;
   margin: 20px auto;
   padding: 20px;
   gap: 20px;
   max-width: 900px;
-  box-shadow: 0 0 15px rgba(0,255,255,0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 255, 255, 0.1),
+    inset 0 0 32px rgba(0, 255, 255, 0.05);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(5px);
 }
 
 .item::before {
@@ -400,24 +413,24 @@ main {
 }
 
 .item:hover { 
-  transform: translateY(-3px) scale(1.01);
+  transform: translateY(-5px);
+  border-color: rgba(0, 255, 255, 0.3);
   box-shadow: 
-    0 0 20px rgba(0,255,255,0.2),
-    0 0 30px rgba(255,0,255,0.1);
-  border-color: rgba(0, 255, 255, 0.5);
+    0 12px 40px 0 rgba(0, 255, 255, 0.15),
+    inset 0 0 40px rgba(0, 255, 255, 0.1);
 }
 
 .item img {
   width: 200px;
   height: 150px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 15px;
   border: 1px solid rgba(0, 255, 255, 0.5);
   box-shadow: 
-    0 0 15px rgba(255,0,255,0.2),
-    inset 0 0 20px rgba(0,255,255,0.2);
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(0, 255, 255, 0.2);
   filter: saturate(1.2) contrast(1.1);
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .item:hover img {
@@ -450,13 +463,14 @@ main {
 
 .item .details h3 {
   font-size: 1.5em;
-  background: linear-gradient(90deg, rgba(255,0,255,0.9), rgba(0,255,255,0.9));
-  background-clip: text;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255,0,255,0.9), rgba(0,255,255,0.9));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 
     2px 2px 4px rgba(0,0,0,0.5),
-    0 0 10px rgba(255,0,255,0.5);
+    0 0 20px rgba(255,0,255,0.5);
   position: relative;
   margin-bottom: 8px;
 }
@@ -473,59 +487,17 @@ main {
 }
 
 @media screen and (max-width: 768px) {
-  /* Désactivation complète des effets gourmands */
+  /* Désactivation des effets de performance uniquement */
   #particles, 
   .bg-anim {
     display: none;
   }
-  
-  /* Suppression des animations et transitions */
-  * {
-    animation: none !important;
-    transition: none !important;
-    text-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-  }
 
-  /* Simplification du header */
+  /* Garder le header mobile */
   header {
     background: rgba(20, 0, 40, 0.95);
   }
 
-  /* Optimisation des items du menu */
-  .item {
-    background: rgba(0, 0, 0, 0.9);
-  }
-
-  .item:hover {
-    transform: none;
-  }
-
-  .item img {
-    border: 1px solid rgba(0, 255, 255, 0.3);
-  }
-
-  /* Style simplifié pour les prix */
-  .item .details .price {
-    color: #fff;
-    font-weight: bold;
-    display: block;
-    margin: 8px 0;
-    font-size: 1.3em;
-  }
-
-  .item .details h3 {
-    color: #0ff;
-    -webkit-text-fill-color: #0ff;
-    background: none;
-    font-size: 1.3em;
-    line-height: 1.4;
-  }
-
-  /* Styles pour le menu compressé mobile */
   .burger-menu {
     display: flex;
     flex-direction: column;
@@ -563,6 +535,7 @@ main {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-direction: column;
   }
 
   nav ul li {
@@ -570,33 +543,56 @@ main {
   }
 
   nav ul li a {
-    color: #0ff;
-    text-decoration: none;
     font-size: 1.2em;
+  }
+
+  /* Optimisations de performance pour les items */
+  .item {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .item:hover {
+    transform: none;
   }
 }
 
-/* Désactiver l'animation de fond sur mobile */
+/* Restaurer les styles de texte pour mobile */
 @media (max-width: 768px) {
-  .bg-anim {
-    animation: none;
-    display: none;
+  body {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
   }
 
-  #particles, canvas#particles {
-    display: none;
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-shadow: inherit;
+  }
+
+  p, a, li {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
   }
 }
 
 footer {
   flex-shrink: 0;
   width: 100%;
-  background: rgba(0,0,0,0.8);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95),
+    rgba(20, 0, 40, 0.9)
+  );
   border-top: 1px solid rgba(0, 255, 255, 0.3);
   padding: 30px 15px;
   position: relative;
   overflow: visible;
   z-index: 1;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
 }
 
 footer::before {
@@ -671,9 +667,13 @@ footer::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  box-shadow: 
+    0 8px 32px rgba(0, 204, 188, 0.3),
+    0 0 16px rgba(0, 255, 255, 0.2);
   z-index: 1000;
   transition: transform 0.3s;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 204, 188, 0.3);
 }
 
 .deliveroo-badge:hover {
@@ -695,5 +695,143 @@ footer::before {
   }
   100% {
     transform: translateY(0px);
+  }
+}
+
+/* Styles pour la page de contact */
+.contact-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 255, 255, 0.1),
+    inset 0 0 32px rgba(0, 255, 255, 0.05);
+}
+
+.contact-image {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.contact-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: contrast(1.1) saturate(1.2);
+  transition: transform 0.5s ease;
+}
+
+.contact-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.2),
+    transparent 50%,
+    rgba(255, 0, 255, 0.2)
+  );
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.contact-form-wrapper {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+}
+
+.contact-form-wrapper h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #0ff, #f0f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.contact-form-wrapper .intro-text {
+  color: #ccc;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form label {
+  color: #0ff;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #0ff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.contact-form button {
+  padding: 15px 30px;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 8px;
+  color: #0ff;
+  font-family: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.contact-form button:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 255, 0.3));
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+}
+
+/* Styles responsives pour la page contact */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .contact-image {
+    height: 300px;
+  }
+
+  .contact-form-wrapper h1 {
+    font-size: 2rem;
   }
 }
