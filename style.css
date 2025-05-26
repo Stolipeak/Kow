@@ -473,193 +473,60 @@ main {
 }
 
 @media screen and (max-width: 768px) {
-  .item .details .price {
-    display: block;
-    margin: 8px 0;
-    font-size: 1.3em;
-    text-align: left;
-  }
-
-  .item .details h3 {
-    font-size: 1.3em;
-    line-height: 1.4;
-  }
-  
-  body {
-    min-height: 100vh;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
-
-  .footer {
-    padding: 20px 10px;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
-  
-  .footer-inner {
-    flex-direction: column;
-    gap: 25px;
-    align-items: center;
-  }
-  
-  .footer-column {
-    flex: 0 1 auto;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 10px 0;
-  }
-  .burger-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    z-index: 20;
-    padding: 10px;
-  }
-
-  .burger-line {
-    width: 30px;
-    height: 3px;
-    background: #0ff;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px rgba(0,255,255,0.5);
-  }
-
-  .burger-menu.active .burger-line:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-  }
-
-  .burger-menu.active .burger-line:nth-child(2) {
-    opacity: 0;
-  }
-
-  .burger-menu.active .burger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(8px, -8px);
-  }
-
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    backdrop-filter: blur(10px);
-    z-index: 10;
-  }
-
-  nav.active {
-    transform: translateX(0);
-  }
-
-  nav ul {
-    text-align: center;
-  }
-
-  nav ul li {
-    margin: 20px 0;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.3s ease;
-  }
-
-  nav.active ul li {
-    opacity: 1;
-    transform: translateX(0);
-    transition-delay: 0.3s;
-  }
-
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  nav ul li a {
-    font-size: 1.5rem;
-  }
-
-  .contact-container {
-    flex-direction: column;
-    margin: 20px auto;
-  }
-
-  .contact-image {
-    min-height: 300px;
-    width: 100%;
-    transition: none;
-  }
-
-  .contact-image img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
-}
-
-/* Optimisations mobiles */
-@media screen and (max-width: 768px) {
-  /* Désactivation des effets gourmands en ressources sur mobile */
-  #particles, .bg-anim {
+  /* Désactivation complète des effets gourmands */
+  #particles, 
+  .bg-anim {
     display: none;
   }
   
-  /* Simplification des animations */
-  .neon-glitch, .item::before, .footer::before {
-    animation: none;
-  }
-  
-  .item:hover {
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .item img {
-    filter: none;
-  }
-  
-  .item:hover img {
-    animation: none;
-  }
-  
-  /* Optimisation des transitions */
-  .item, .contact-container, .footer-insta {
-    transition: none;
-  }
-  
-  /* Réduction des effets de flou qui sont coûteux en performance */
-  header {
-    backdrop-filter: none;
-    background: rgba(20, 0, 40, 0.95);
-  }
-  
-  nav {
-    backdrop-filter: none;
-    background: rgba(0, 0, 0, 0.98);
-  }
-}
-
-/* Désactiver toutes les animations si l'utilisateur le préfère */
-@media (prefers-reduced-motion: reduce) {
+  /* Suppression des animations et transitions */
   * {
     animation: none !important;
     transition: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Simplification du header */
+  header {
+    background: rgba(20, 0, 40, 0.95);
+  }
+
+  /* Optimisation des items du menu */
+  .item {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .item:hover {
+    transform: none;
+  }
+
+  .item img {
+    border: 1px solid rgba(0, 255, 255, 0.3);
+  }
+
+  /* Style simplifié pour les prix */
+  .item .details .price {
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    margin: 8px 0;
+    font-size: 1.3em;
+  }
+
+  .item .details h3 {
+    color: #0ff;
+    -webkit-text-fill-color: #0ff;
+    background: none;
+    font-size: 1.3em;
+    line-height: 1.4;
   }
 }
 
-.footer {
+footer {
   flex-shrink: 0;
   width: 100%;
   background: rgba(0,0,0,0.8);
@@ -670,7 +537,7 @@ main {
   z-index: 1;
 }
 
-.footer::before {
+footer::before {
   content: '';
   position: absolute;
   top: 0;
