@@ -1,3 +1,6 @@
+// Détection mobile
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 // Lazy loading des images désactivé pour éviter les problèmes de chargement
 function handleImageLoading() {
   // Fonction désactivée
@@ -18,7 +21,6 @@ function handleImageLoading() {
   const colors = ["#0ff", "#f0f", "#fff", "#0f9"];
   
   // Réduire le nombre de particules sur mobile
-  const isMobile = window.innerWidth <= 768;
   const particleCount = isMobile ? 50 : 150;
   
   const particles = Array.from({length: particleCount}, () => ({
@@ -84,6 +86,32 @@ function handleImageLoading() {
   }
   animate();
 })();
+
+// Initialisation conditionnelle des particules
+if (!isMobile && typeof particlesJS !== 'undefined') {
+  particlesJS('particles', {
+    // ...existing code...
+  });
+}
+
+// Chargement différé des images
+document.addEventListener('DOMContentLoaded', function() {
+  if (isMobile) {
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+          imageObserver.unobserve(img);
+        }
+      });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+  }
+});
 
 // Carrousel 3D (si présent)
 (function() {
