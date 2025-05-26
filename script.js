@@ -118,10 +118,14 @@ function handleImageLoading() {
     nav.classList.toggle('active');
     document.body.classList.toggle('no-scroll');
   }
-
-  // Gestion des événements tactiles
+  // Gestion des événements tactiles et clic
   burger.addEventListener('touchend', (e) => {
     e.preventDefault();
+    toggleMenu();
+  });
+
+  // Ajouter le clic pour desktop
+  burger.addEventListener('click', () => {
     toggleMenu();
   });
 
